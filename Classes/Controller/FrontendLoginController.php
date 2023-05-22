@@ -125,7 +125,7 @@ class FrontendLoginController extends ActionController
             $absoluteUriScheme = (bool)$this->extensionConfiguration['forceSSL'] ? 'https' : 'http';
             $targetUrl = $this->uriBuilder->setTargetPageUid((int)$configuredRedirectPage)->setAbsoluteUriScheme($absoluteUriScheme)->setCreateAbsoluteUri(true)->build();
         }
-        HttpUtility::redirect($targetUrl);
+        header('Location: ' . GeneralUtility::locationHeaderUrl($targetUrl));
         return $this->htmlResponse();
     }
 
